@@ -25,6 +25,6 @@ jobs:
       - name: Run script
         run: python report.py # Replace with your script name
         env:
-          EMAIL: ${{ secrets.EMAIL }}
-          PASSWORD: ${{ secrets.PASSWORD }}
+          email: ${{ secrets.EMAIL }}
+          password: ${{ secrets.PASSWORD }}
           GOOGLE_CREDENTIALS: ${{ secrets.GOOGLE_CREDENTIALS }}
