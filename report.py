@@ -44,7 +44,7 @@ print("Unpaid: ", unpaid)
 print("Paid: ", paid)
 print("overdue count: ", overdue_count)
 
-schedule.every().thursday.at("14:20").do(send_email, to=email, client_name='Boss', total_revenue=total_revenue, unpaid=unpaid, paid=paid, overdue=overdue_count)
+schedule.every().thursday.at("15:45").do(send_email, to=email, client_name='Boss', total_revenue=total_revenue, unpaid=unpaid, paid=paid, overdue=overdue_count)
 
 while True:
     schedule.run_pending()
