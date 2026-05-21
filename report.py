@@ -3,10 +3,14 @@ import os
 from dotenv import load_dotenv
 import smtplib
 from email.mime.text import MIMEText
-import schedule, time
+
+import json
+
+credentials = os.getenv('GOOGLE_CREDENTIALS')
+with open('sheetscripts.json', 'w') as f:
+    f.write(credentials)
 
 load_dotenv()
-file = os.getenv('file')
 email = os.getenv('email')
 password = os.getenv('password')
 
@@ -25,7 +29,7 @@ def send_email(to, client_name, total_revenue, unpaid, paid, overdue):
         server.login(email, password)
         server.sendmail(email, to, msg.as_string())
 
-gc = gspread.service_account(filename=file)
+gc = gspread.service_account(filename='sheetscripts.json')
 
 sh = gc.open('Script')
 
@@ -44,9 +48,7 @@ print("Unpaid: ", unpaid)
 print("Paid: ", paid)
 print("overdue count: ", overdue_count)
 
-schedule.every().thursday.at("15:45").do(send_email, to=email, client_name='Boss', total_revenue=total_revenue, unpaid=unpaid, paid=paid, overdue=overdue_count)
+send_email(to=email, client_name='Boss', total_revenue=total_revenue, unpaid=unpaid, paid=paid, overdue=overdue_count)
 
-while True:
-    schedule.run_pending()
-    time.sleep(1)
+
 
