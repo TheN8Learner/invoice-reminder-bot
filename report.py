@@ -3,6 +3,7 @@ from dotenv import load_dotenv
 from email.mime.text import MIMEText
 from datetime import datetime
 
+
 def send_emails(to, receiver_name, total_revenue, paid, unpaid, reminded):
     msg = MIMEText(f"Hello {receiver_name} here is your weekly report: \
                    \nTotal revenue: {total_revenue} \
