@@ -13,13 +13,11 @@ load_dotenv()
 
 token =  os.getenv('TELEGRAM_TOKEN')
 
-# Set up basic logging to see errors in the console
 logging.basicConfig(
     format='%(asctime)s - %(name)s - %(levelname)s - %(message)s',
     level=logging.INFO
 )
 
-# Function to handle the /start command
 async def start(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id, 
@@ -46,7 +44,6 @@ async def report(update: Update, context: ContextTypes.DEFAULT_TYPE):
                    \nTotal of reminded: {reminded}"
     )
 
-# Function to echo back messages
 async def echo(update: Update, context: ContextTypes.DEFAULT_TYPE):
     await context.bot.send_message(
         chat_id=update.effective_chat.id, 
